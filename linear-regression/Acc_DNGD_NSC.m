@@ -20,7 +20,7 @@ function [Err, cost_counter] = Acc_DNGD_NSC(Lap, L, eta, step_size_mode, t0, bet
 % [1] Qu, Guannan, and Na Li. "Accelerated distributed Nesterov gradient 
 %     descent." arXiv preprint arXiv:1705.07176 (2017).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-global A b col Niter Num_Nodes
+global A b col Niter Num_Nodes comp_time_unit comm_time_unit
 
 Err = zeros(Niter+1, 2);
 W   = eye(Num_Nodes) - Lap;
@@ -68,6 +68,6 @@ end
 % the first row is for total cost; the second row is for communication
 % cost; the third row is for gradient computation cost.
 cost_counter      = zeros(3, Niter+1); 
-cost_counter(1,:) = (0:Niter)*4;
-cost_counter(2,:) = (0:Niter)*3;
-cost_counter(3,:) = (0:Niter)*1;
+cost_counter(2,:) = (0:Niter)*3*comm_time_unit;
+cost_counter(3,:) = (0:Niter)*1*comp_time_unit;
+cost_counter(1,:) = cost_counter(2,:) + cost_counter(3,:);

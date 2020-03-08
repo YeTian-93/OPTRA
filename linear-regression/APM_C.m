@@ -20,7 +20,7 @@ function [Err, cost_counter] = APM_C(Lap, L, mu, beta0, is_strongly_convex, inne
 %     Rate Analysis for Distributed Accelerated Gradient Methods." arXiv 
 %     preprint arXiv:1810.01053 (2018).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-global A b col X0 Num_Nodes Niter
+global A b col X0 Num_Nodes Niter comp_time_unit comm_time_unit
 
 Err = zeros(Niter+1, 2);
 
@@ -77,7 +77,7 @@ for k = 1:Niter
     end
     
     %%% Add total cost after one gradient evaluation %%%
-    cost_counter(1,k+1) = cost_counter(1,k) + T + 1;
+    cost_counter(1,k+1) = cost_counter(1,k) + + T*comm_time_unit + 1*comp_time_unit;
 end
-cost_counter(3,:) = (0:Niter)*1;
+cost_counter(3,:) = (0:Niter)*1*comp_time_unit;
 cost_counter(2,:) = cost_counter(1,:) - cost_counter(3,:);

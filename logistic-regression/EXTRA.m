@@ -15,7 +15,7 @@ function [Err, cost_counter] = EXTRA(Lap, alpha)
 %     first-order algorithm for decentralized consensus optimization." SIAM 
 %     Journal on Optimization 25, no. 2 (2015): 944-966.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-global U V col X0 Niter Num_Nodes
+global U V col X0 Niter Num_Nodes comp_time_unit comm_time_unit
 
 Err = zeros(Niter+1, 2);
 W = eye(Num_Nodes) - Lap;
@@ -48,7 +48,7 @@ for k = 2:Niter
 end
 % the first row is for total cost; the second row is for communication
 % cost; the third row is for gradient computation cost.
-cost_counter          = zeros(3, Niter+1); 
-cost_counter(1,2:end) = (1:Niter)*3 - 1;
-cost_counter(2,2:end) = (1:Niter)*2 - 1;
-cost_counter(3,2:end) = (1:Niter)*1;
+cost_counter          = zeros(3, Niter+1);
+cost_counter(2,2:end) = ((1:Niter)*2 - 1) * comm_time_unit;
+cost_counter(3,2:end) = (1:Niter)*1*comp_time_unit;
+cost_counter(1,:)     = cost_counter(2,:) + cost_counter(3,:);

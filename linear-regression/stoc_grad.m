@@ -1,4 +1,15 @@
 function g = stoc_grad(i, x, batch_size_portion) 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This code outputs a stochastic gradient corresponding to a random
+% mini-batch sampled uniformly from the local data set.
+% ---------input----------
+% i:                  index of the agent;
+% x:                  current iterate;
+% batch_size_portion: the propotion of the size of the mini-batch to the
+%                     full local data set.
+% ---------output---------
+% g:                  resulted stochastic gradient.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 global A b
 
 feature = A{i};      label = b{i};

@@ -1,5 +1,26 @@
 function [Err, cost_counter] = Acc_DNGD_NSC(Lap, L, eta, step_size_mode, t0, beta)
-global U V col Niter Num_Nodes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This code describes the algorithm--Acc-DNGD-NSC in [1].
+% ---------input----------
+% Lap:     a Laplacian matrix;
+% L:       Lipschitz constant;
+% eta:     step size;
+% step_size_mode: the default mode is constant step size.  The user need to 
+%                 input "dimi" for this argument to invoke diminishing 
+%                 step size mode;
+% t0, beta: constants needed in dimininishing step size and is not required
+%              for constant step size mode
+% ---------output---------
+% Err: a two-row matrix with the first row recoding the Bregman distance 
+%      optimality gap and the second row the function value optimality gap.
+% cost_counter: a three-row matrix with frst row recording the total cost; 
+%               the second row communication cost and the third row
+%               gradient computation cost.
+% --------reference-------
+% [1] Qu, Guannan, and Na Li. "Accelerated distributed Nesterov gradient 
+%     descent." arXiv preprint arXiv:1705.07176 (2017).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+global U V col Niter Num_Nodes comp_time_unit comm_time_unit
 
 Err = zeros(Niter+1, 2);
 W   = eye(Num_Nodes) - Lap;
@@ -49,6 +70,6 @@ end
 % the first row is for total cost; the second row is for communication
 % cost; the third row is for gradient computation cost.
 cost_counter      = zeros(3, Niter+1); 
-cost_counter(1,:) = (0:Niter)*4;
-cost_counter(2,:) = (0:Niter)*3;
-cost_counter(3,:) = (0:Niter)*1;
+cost_counter(2,:) = (0:Niter)*3*comm_time_unit;
+cost_counter(3,:) = (0:Niter)*1*comp_time_unit;
+cost_counter(1,:) = cost_counter(2,:) + cost_counter(3,:);

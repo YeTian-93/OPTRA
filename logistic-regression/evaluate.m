@@ -1,5 +1,13 @@
 function [Breg_Err, Fvalue_Err] = evaluate(X)
-global U V row Num_Nodes F_opt X_opt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This code output two optimality measures for an iterate.
+% ---------input----------
+% X: any stacked iterate;
+% ---------output---------
+% Breg_Err: the Bregman distance optimality error;
+% Fvalue_Err: the function value optimality error
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+global U V Num_Nodes F_opt X_opt
 %%% Bregman distance optimality gap %%%%
 Breg_Err = 0;
 for i = 1:Num_Nodes

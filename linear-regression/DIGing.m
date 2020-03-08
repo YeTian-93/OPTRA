@@ -20,7 +20,7 @@ function [Err, cost_counter] = DIGing(Lap, alpha)
 %     optimization." IEEE Transactions on Signal and Information Processing 
 %     over Networks 2, no. 2 (2016): 120-136.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-global A b col X0 Niter Num_Nodes
+global A b col X0 Niter Num_Nodes comp_time_unit comm_time_unit
 
 Err = zeros(Niter+1, 2);
 W = eye(Num_Nodes) - Lap;
@@ -48,7 +48,7 @@ for k = 1:Niter
 end
 % the first row is for total cost; the second row is for communication
 % cost; the third row is for gradient computation cost.
-cost_counter = zeros(3, Niter+1); 
-cost_counter(1,:) = (0:Niter)*3;
-cost_counter(2,:) = (0:Niter)*2;
-cost_counter(3,:) = (0:Niter)*1;
+cost_counter      = zeros(3, Niter+1);
+cost_counter(2,:) = (0:Niter)*2*comm_time_unit;
+cost_counter(3,:) = (0:Niter)*1*comp_time_unit;
+cost_counter(1,:) = cost_counter(2,:) + cost_counter(3,:);

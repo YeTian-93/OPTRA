@@ -1,9 +1,9 @@
 function Network_Laplician(I)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Generate graph using Erdos-Renyi model
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This code generates a Laplacian matrix of a graph using Erdos-Renyi model.
+% ---------input----------
+% I:     number of nodes over the network
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 while true
     pErdosRenyi = 0.1;
     p_data_gen = 1 - sqrt(1 - pErdosRenyi);    
@@ -20,17 +20,10 @@ while true
     degree = diag(sum(Adj));  %Degree matrix
     StandardLap = degree - Adj;
     lambda = sort(eig(StandardLap));
-    if lambda(2) > 0.1 %&& lambda(2) < 0.5
+    if lambda(2) > 0.1 
         fprintf(['The Erdos-Renyi graph is generated. Algebraic Connectivity: ', num2str(lambda(2)),'\n']);
         break;
     end
-    
-%     testAdj = (eye(I)+Adj)^I; % check if G is connected
-%     
-%     if ~any(any(~testAdj))
-%         fprintf('The ER graph is connected\n');
-%         break;
-%     end
 end
 
 %%%% MH weight %%%%

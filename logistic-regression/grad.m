@@ -1,6 +1,14 @@
 function g = grad(U, V, x) 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This code outputs the gradient corresponding to the data set (U, V).
+% ---------input----------
+% U:                  feature matrix;
+% V:                  label vector;
+% x:                  current iterate.
+% ---------output---------
+% g:                  resulted gradient.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 global r
-
 total = size(U,1);
 R = total * r;
 g = 0;

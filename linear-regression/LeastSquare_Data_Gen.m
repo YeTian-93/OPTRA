@@ -1,8 +1,8 @@
 function LeastSquare_Data_Gen(Num_Nodes, omega)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% This code generates data for the least-square problem.  The data
-% generation method is introduced in [1] and summarized in the simulation
-% section of our paper.
+% This code generates data for the decentralized least-square problem.  The
+% data generation method is introduced in [1] and summarized in the 
+% simulation section of our paper.
 % ---------input----------
 % Num_Nodes:      number of agents;
 % omega:          the parameter controlling the condition number of the

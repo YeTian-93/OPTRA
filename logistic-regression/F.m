@@ -1,4 +1,13 @@
 function f = F(U, V, x) 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This code outputs the function value corresponding to the data set (U, V).
+% ---------input----------
+% U:                  feature matrix;
+% V:                  label vector;
+% x:                  current iterate.
+% ---------output---------
+% f:                  resulted function value.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 global r 
 
 total = size(U,1);
