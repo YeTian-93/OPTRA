@@ -5,4 +5,4 @@ This is the MATLAB code for simulating OPTRA.  The simulation consists of two pr
 Each folder contains codes for the specific problem.  Inside each folder, the main function is main.m.  Please contact me via _tian110@purdue.edu_ for any question.  Enjoy!
 
 ## Reference:
-[1] Jinming Xu, Ye Tian, Ying Sun, and Gesualdo Scutari. "Accelerated Primal-Dual Algorithms for Distributed Smooth Convex Optimization over Networks." In The 23rd International Conference on Artificial Intelligence and Statistics (AISTATS), 2020.
+[1] Jinming Xu, Ye Tian, Ying Sun, and Gesualdo Scutari. "Accelerated Primal-Dual Algorithms for Distributed Smooth Convex Optimization over Networks." In The 23rd International Conference on Artificial Intelligence and Statistics (AISTATS), 2020.  Available at https://arxiv.org/pdf/1910.10666.pdf
